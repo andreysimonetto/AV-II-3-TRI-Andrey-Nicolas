@@ -1,11 +1,4 @@
-const API_URL = (() => {
-    const host = window.location.hostname;
-    if (host.endsWith('.app.github.dev')) {
-        const hostBackend = host.replace(/-\d+(\.app\.github\.dev)$/, '-8080$1');
-        return `https://${hostBackend}/api/publicacoes`;
-    }
-    return `${window.location.protocol}//${host}:8080/api/publicacoes`;
-})();
+const API_URL = '/api/publicacoes';
 
 // ---------- PAGINA INICIAL ----------
 const listaPublicacoes = document.getElementById('lista-publicacoes');

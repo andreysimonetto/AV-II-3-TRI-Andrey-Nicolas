@@ -17,7 +17,5 @@ Blog pessoal sobre games, desenvolvido como atividade Full Stack.
 ./run.sh
 ```
 
-Isso sobe o back-end (porta 8080) e o front-end (porta 5500) e, no Codespaces,
-deixa as portas públicas automaticamente. Abra a porta 5500 na aba **Portas**.
-
-API: `/api/publicacoes` na porta 8080.
+Abra a porta 5500 na aba **Portas**. A pagina e a API usam o mesmo endereco.
+A API tambem atende em `/api/publicacoes` na porta 8080.
