@@ -1,14 +1,10 @@
-// Endereco da API do Spring Boot.
-// No GitHub Codespaces o navegador NAO enxerga "localhost", entao a URL e
-// montada automaticamente trocando a porta do front (5500) pela do back (8080).
-// Rodando na sua maquina, usa localhost normalmente.
 const API_URL = (() => {
     const host = window.location.hostname;
     if (host.endsWith('.app.github.dev')) {
         const hostBackend = host.replace(/-\d+(\.app\.github\.dev)$/, '-8080$1');
         return `https://${hostBackend}/api/publicacoes`;
     }
-    return 'http://localhost:8080/api/publicacoes';
+    return `${window.location.protocol}//${host}:8080/api/publicacoes`;
 })();
 
 // ---------- PAGINA INICIAL ----------
@@ -72,15 +68,22 @@ function mostrarPublicacoes(publicacoes) {
     publicacoes.forEach(pub => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.innerHTML = `
-            <span class="categoria">${pub.categoria}</span>
-            <h3>${pub.titulo}</h3>
-            <p class="data">${formatarData(pub.dataPublicacao)}</p>
-            <p>${pub.descricao || 'Sem descricao.'}</p>
-            <a href="artigo.html?id=${pub.id}">Ler artigo completo</a>
-        `;
+        const categoria = adicionarTexto(card, 'span', pub.categoria);
+        categoria.className = 'categoria';
+        adicionarTexto(card, 'h3', pub.titulo);
+        adicionarTexto(card, 'p', formatarData(pub.dataPublicacao)).className = 'data';
+        adicionarTexto(card, 'p', pub.descricao || 'Sem descricao.');
+        const link = adicionarTexto(card, 'a', 'Ler artigo completo');
+        link.href = `artigo.html?id=${encodeURIComponent(pub.id)}`;
         container.appendChild(card);
     });
+}
+
+function adicionarTexto(container, tag, texto) {
+    const elemento = document.createElement(tag);
+    elemento.textContent = texto;
+    container.appendChild(elemento);
+    return elemento;
 }
 
 function formatarData(dataString) {
@@ -127,11 +130,11 @@ async function carregarArtigo(id) {
         const resposta = await fetch(`${API_URL}/${id}`);
         if (!resposta.ok) throw new Error('Nao encontrado');
         const pub = await resposta.json();
-        artigoCompleto.innerHTML = `
-            <h1>${pub.titulo}</h1>
-            <p class="meta">Categoria: ${pub.categoria} | Publicado em: ${formatarData(pub.dataPublicacao)}</p>
-            <div class="conteudo">${pub.conteudo}</div>
-        `;
+        artigoCompleto.replaceChildren();
+        adicionarTexto(artigoCompleto, 'h1', pub.titulo);
+        const meta = `Categoria: ${pub.categoria} | Publicado em: ${formatarData(pub.dataPublicacao)}`;
+        adicionarTexto(artigoCompleto, 'p', meta).className = 'meta';
+        adicionarTexto(artigoCompleto, 'div', pub.conteudo).className = 'conteudo';
     } catch (erro) {
         document.getElementById('mensagem-erro').style.display = 'block';
         artigoCompleto.style.display = 'none';

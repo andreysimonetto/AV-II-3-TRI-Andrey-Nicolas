@@ -3,6 +3,12 @@
 # Uso: ./run.sh   (na raiz do projeto)
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 
+if [ -n "$CODESPACE_NAME" ]; then
+  export GAMEBLOG_FRONTEND_ORIGIN="https://${CODESPACE_NAME}-5500.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-app.github.dev}"
+else
+  export GAMEBLOG_FRONTEND_ORIGIN="${GAMEBLOG_FRONTEND_ORIGIN:-http://localhost:5500}"
+fi
+
 # Front-end
 (cd "$ROOT/frontend" && python3 -m http.server 5500 --bind 0.0.0.0) &
 FRONT_PID=$!
