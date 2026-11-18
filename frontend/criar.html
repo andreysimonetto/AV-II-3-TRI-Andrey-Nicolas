@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameBlog - Criar Publicacao</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">GameBlog</div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="criar.html">Criar Publicacao</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Criar Nova Publicacao</h1>
+
+        <form id="form-criar" class="form-criar">
+            <label for="titulo">Titulo *</label>
+            <input type="text" id="titulo" placeholder="Digite o titulo do artigo" required>
+
+            <label for="categoria">Categoria *</label>
+            <select id="categoria" required>
+                <option value="">Selecione...</option>
+                <option value="Acao">Acao</option>
+                <option value="RPG">RPG</option>
+                <option value="Estrategia">Estrategia</option>
+                <option value="Indie">Indie</option>
+                <option value="eSports">eSports</option>
+                <option value="Curiosidades">Curiosidades</option>
+                <option value="Dicas">Dicas</option>
+            </select>
+
+            <label for="descricao">Pequena Descricao</label>
+            <input type="text" id="descricao" placeholder="Um resumo curto do artigo">
+
+            <label for="conteudo">Conteudo Completo *</label>
+            <textarea id="conteudo" rows="10" placeholder="Escreva o artigo sobre games aqui..." required></textarea>
+
+            <button type="submit">Publicar Artigo</button>
+        </form>
+
+        <p id="mensagem-sucesso" class="mensagem-sucesso" style="display: none;">Publicacao cadastrada com sucesso!</p>
+        <p id="mensagem-erro" class="mensagem-erro" style="display: none;">Erro ao cadastrar. Verifique os campos obrigatorios.</p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

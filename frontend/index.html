@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameBlog - Inicio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">GameBlog</div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="criar.html">Criar Publicacao</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="apresentacao">
+            <h1>Bem-vindo ao GameBlog</h1>
+            <p>Artigos sobre games, generos, dicas para jogadores e curiosidades do mundo dos jogos.</p>
+        </section>
+
+        <section class="controles">
+            <input type="text" id="campo-pesquisa" placeholder="Pesquisar artigos sobre games...">
+            <div id="filtros-categoria" class="filtros">
+                <!-- Botoes de categoria serao inseridos pelo JS -->
+            </div>
+        </section>
+
+        <section id="lista-publicacoes" class="grid-publicacoes">
+            <!-- Os cards serao inseridos pelo JS -->
+        </section>
+
+        <p id="mensagem-vazia" class="mensagem-vazia" style="display: none;">Nenhum artigo encontrado.</p>
+        <p id="mensagem-carregando" class="mensagem-carregando">Carregando artigos...</p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

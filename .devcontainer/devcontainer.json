@@ -1,0 +1,15 @@
+{
+  "name": "GameBlog",
+  "image": "mcr.microsoft.com/devcontainers/java:1-17-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {}
+  },
+  "forwardPorts": [8080, 5500],
+  "portsAttributes": {
+    "8080": { "label": "Backend (Spring)", "onAutoForward": "notify" },
+    "5500": { "label": "Frontend", "onAutoForward": "openBrowser" }
+  },
+  "customizations": {
+    "vscode": { "extensions": ["vscjava.vscode-java-pack", "vmware.vscode-boot-dev-pack"] }
+  }
+}
