@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/publicacoes")
-@CrossOrigin(origins = "${GAMEBLOG_FRONTEND_ORIGIN:http://127.0.0.1:5500}")
 public class PublicacaoController {
     private final PublicacaoRepository repository;
 
@@ -30,7 +29,7 @@ public class PublicacaoController {
         return repository.findById(id).orElseThrow(PublicacaoNaoEncontradaException::new);
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public Publicacao criar(@Valid @RequestBody Publicacao publicacao) {
         return repository.save(publicacao);
